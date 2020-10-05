@@ -2,19 +2,19 @@ import random
 
 
 def partition3(a, l, r):
-    x = a[l]
-    j = l
-    k = l
-    for i in range(l + 1, r + 1):
-        if a[i] <= x:
-            j += 1
-            k += 1
-            a[i], a[j] = a[j], a[i]
-        elif a[i] == x:
-            k += 1
-            a[i], a[k] = a[k], a[i]
-    a[l], a[j] = a[j], a[l]
-    return j, k
+    i = l
+    value = a[l]
+    while i <= r:
+        if a[i] == value:
+            i += 1
+        elif a[i] < value:
+            a[i], a[l] = a[l], a[i]
+            i += 1
+            l += 1
+        else:
+            a[i], a[r] = a[r], a[i]
+            r -= 1
+    return l, r
 
 
 def randomized_quick_sort(a, l, r):
